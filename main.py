@@ -1,6 +1,5 @@
 import os
 
-
 sistema_operacional = os.name
 
 def limpa_tela():
