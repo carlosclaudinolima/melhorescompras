@@ -1,9 +1,10 @@
 import os
 import json
 
-chave_valor = 'Valor'
-chave_tipo_embalagem = 'TipoEmbalagem'
-minimo_produtos = 2
+chave_valor = 'valor'
+chave_tipo_embalagem = 'tipo_embalagem'
+chave_icms = 'valor_icms'
+minimo_produtos = 5
 
 dc_produtos = {}
 
@@ -25,7 +26,8 @@ def banner():
     print(melhores_compras)
     print('\n\n')
     
-def cadastrar_produto():    
+def cadastrar_produto():
+    calculo_icms = lambda  x: x * 18 / 100
     nome_produto = ''
     while nome_produto == '':
         numero_produto = len(dc_produtos)+1
@@ -42,6 +44,7 @@ def cadastrar_produto():
                     continue
                 else:
                     dc_produtos[nome_produto][chave_valor] = valor_produto
+                    dc_produtos[nome_produto][chave_icms] = calculo_icms(valor_produto)
                     break
             tipo_embalagem = input(f'Digite o tipo de embalagem para o produto "{nome_produto}": ')
             dc_produtos[nome_produto][chave_tipo_embalagem] = tipo_embalagem
