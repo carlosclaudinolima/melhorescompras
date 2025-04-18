@@ -1,11 +1,13 @@
 import os
 import json
-sistema_operacional = os.name
+
 chave_valor = 'Valor'
 chave_tipo_embalagem = 'TipoEmbalagem'
 minimo_produtos = 2
 
 dc_produtos = {}
+
+sistema_operacional = os.name
 
 def limpa_tela():
     if sistema_operacional == 'nt':
@@ -23,10 +25,7 @@ def banner():
     print(melhores_compras)
     print('\n\n')
     
-
-
-def cadastrar_produto():
-    
+def cadastrar_produto():    
     nome_produto = ''
     while nome_produto == '':
         numero_produto = len(dc_produtos)+1
@@ -50,14 +49,11 @@ def cadastrar_produto():
             print(f'Descrição já existente "{nome_produto}"')
             continue
         
-
 def salvar_json():
-    produtos = json.dumps(dc_produtos) 
+    produtos = json.dumps(dc_produtos, indent=4) 
     arquivo_json = '1_5_arquivo_produto.json'
     with open(arquivo_json, '+w') as f:
         f.write(produtos)
-
-    
 
 def main():
     while True:
