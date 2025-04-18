@@ -4,7 +4,7 @@ import json
 chave_valor = 'valor'
 chave_tipo_embalagem = 'tipo_embalagem'
 chave_icms = 'valor_icms'
-minimo_produtos = 2
+minimo_produtos = 5
 
 dc_produtos = {}
 
