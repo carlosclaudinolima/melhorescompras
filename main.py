@@ -2,6 +2,8 @@ import os
 
 sistema_operacional = os.name
 dc_produtos = {}
+chave_valor = 'Valor'
+chave_tipo_embalagem = 'TipoEmbalagem'
 
 def limpa_tela():
     if sistema_operacional == 'nt':
@@ -22,11 +24,30 @@ def banner():
 
 
 def cadastrar_produto():
-    numero_produto = len(dc_produtos)+1
+    
     nome_produto = ''
     while nome_produto == '':
+        numero_produto = len(dc_produtos)+1
         nome_produto = input(f'Digite a descrição do produto #{numero_produto} ')
-        print(nome_produto)
+        try:
+            dc_produtos[nome_produto]           
+        except KeyError:
+            dc_produtos[nome_produto] = {}
+            while True:
+                banner()
+                try:
+                    valor_produto = float(input(f'Digite um valor válido para o produto "{nome_produto}": '))
+                except ValueError:
+                    continue
+                else:
+                    dc_produtos[nome_produto][chave_valor] = valor_produto
+                    break
+            tipo_embalagem = input(f'Digite o tipo de embalagem para o produto "{nome_produto}": ')
+            dc_produtos[nome_produto][chave_tipo_embalagem] = tipo_embalagem
+        else:
+            print(f'Descrição já existente "{nome_produto}"')
+            continue
+            
 
 def main():
     while True:
