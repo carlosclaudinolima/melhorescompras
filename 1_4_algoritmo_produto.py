@@ -4,7 +4,7 @@ import json
 chave_valor = 'valor'
 chave_tipo_embalagem = 'tipo_embalagem'
 chave_icms = 'valor_icms'
-minimo_produtos = 5
+minimo_produtos = 2
 
 dc_produtos = {}
 
@@ -26,12 +26,16 @@ def banner():
     print(melhores_compras)
     print('\n\n')
     
-def cadastrar_produto():
-    calculo_icms = lambda  x: x * 18 / 100
+def cadastrar_produto():    
     nome_produto = ''
     while nome_produto == '':
+        banner()
         numero_produto = len(dc_produtos)+1
-        nome_produto = input(f'Digite a descrição do produto #{numero_produto} ')
+        nome_produto = input(f'Digite a descrição do {numero_produto}º produto: ')
+        if nome_produto.lstrip().rstrip() == '':
+            input('O nome do produto deve ser preenchido.\nPressione uma tecla pra continuar...')
+            nome_produto = ''
+            continue
         try:
             dc_produtos[nome_produto]           
         except KeyError:
@@ -39,17 +43,21 @@ def cadastrar_produto():
             while True:
                 banner()
                 try:
-                    valor_produto = float(input(f'Digite um valor válido para o produto "{nome_produto}": '))
+                    valor_produto = float(input(f'Digite o valor do produto "{nome_produto}": '))                    
+                    if valor_produto <= 0:
+                        raise ValueError
                 except ValueError:
+                    input('Valor inválido. O valor deve ser numérico e maior que zero.\nPressione uma tecla pra continuar...')
                     continue
                 else:
                     dc_produtos[nome_produto][chave_valor] = valor_produto
-                    dc_produtos[nome_produto][chave_icms] = calculo_icms(valor_produto)
+                    dc_produtos[nome_produto][chave_icms] = (lambda  x: x * 18/100)(valor_produto)
                     break
             tipo_embalagem = input(f'Digite o tipo de embalagem para o produto "{nome_produto}": ')
             dc_produtos[nome_produto][chave_tipo_embalagem] = tipo_embalagem
         else:
-            print(f'Descrição já existente "{nome_produto}"')
+            input(f'Descrição já existente "{nome_produto}"\nPressione uma tecla pra continuar...')
+            nome_produto = ''
             continue
         
 def salvar_json():
@@ -59,8 +67,7 @@ def salvar_json():
         f.write(produtos)
 
 def main():
-    while True:
-        banner()
+    while True:        
         cadastrar_produto()
         if input("\nDeseja cadastrar mais um produto ? (S/N) ").upper() != 'S':
             break
