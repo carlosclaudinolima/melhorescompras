@@ -25,12 +25,12 @@ def cadastrar_produto():
     numero_produto = len(dc_produtos)+1
     nome_produto = ''
     while nome_produto == '':
-        nome_produto = input(f'Digite o nome do produto #{numero_produto} ')
+        nome_produto = input(f'Digite a descrição do produto #{numero_produto} ')
         print(nome_produto)
 
 def main():
-    banner()
     while True:
+        banner()
         cadastrar_produto()
         if input("Deseja cadastrar mais um produto ? (S/N) ").upper() != 'S':
             break
