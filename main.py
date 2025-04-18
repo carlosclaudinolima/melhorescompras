@@ -1,9 +1,11 @@
 import os
-
+import json
 sistema_operacional = os.name
-dc_produtos = {}
 chave_valor = 'Valor'
 chave_tipo_embalagem = 'TipoEmbalagem'
+minimo_produtos = 2
+
+dc_produtos = {}
 
 def limpa_tela():
     if sistema_operacional == 'nt':
@@ -47,15 +49,24 @@ def cadastrar_produto():
         else:
             print(f'Descrição já existente "{nome_produto}"')
             continue
-            
+        
+
+def salvar_json():
+    produtos = json.dumps(dc_produtos) 
+    arquivo_json = '1_5_arquivo_produto.json'
+    with open(arquivo_json, '+w') as f:
+        f.write(produtos)
+
+    
 
 def main():
     while True:
         banner()
         cadastrar_produto()
-        if input("Deseja cadastrar mais um produto ? (S/N) ").upper() != 'S':
+        if input("\nDeseja cadastrar mais um produto ? (S/N) ").upper() != 'S':
             break
-
+    if len(dc_produtos) >= minimo_produtos:
+        salvar_json()
 
 if __name__ == '__main__':
     main()
