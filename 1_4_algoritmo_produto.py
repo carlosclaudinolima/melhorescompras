@@ -1,3 +1,12 @@
+""" a) Crie um algoritmo em python que peça ao usuário as seguintes informações de produtos: descrição do produto, valor do produto, tipo de embalagem.
+    b) Crie uma função Lambda que, a partir do valor do produto, retorne o valor do ICMS (considere aplicar 18% sobre o valor do produto).
+    c) Enquanto o usuário responder sim à pergunta de “Deseja cadastrar um novo produto”, o algoritmo deverá pedir as informações do produto,
+    armazenando essas informações (incluindo o valor do ICMS) em uma coleção de sua escolha.
+    d) O algoritmo deverá tratar exceções genéricas e específicas, como por exemplo, quando se espera entrar um valor numérico para um campo
+    e o usuário entra com uma informação do tipo string.
+    e) Quando o usuário encerrar o seu cadastro, o algoritmo deverá varrer a coleção e criar um arquivo no formato .JSON com as informações. 
+    É necessário ter no mínimo 5 produtos cadastrados. O nome do arquivo deverá ser: 1_5_arquivo_produto.json. """
+
 import os
 import json
 
