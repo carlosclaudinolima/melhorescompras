@@ -1,0 +1,32 @@
+{
+    "Banana": {
+        "valor": 10.0,
+        "valor_icms": 1.8,
+        "tipo_embalagem": "Lote"
+    },
+    "Laranja": {
+        "valor": 20.0,
+        "valor_icms": 3.6,
+        "tipo_embalagem": "Saco"
+    },
+    "Pera": {
+        "valor": 15.0,
+        "valor_icms": 2.7,
+        "tipo_embalagem": "Lote"
+    },
+    "Goiaba": {
+        "valor": 16.0,
+        "valor_icms": 2.88,
+        "tipo_embalagem": "Caixa"
+    },
+    "Caqui": {
+        "valor": 9.5,
+        "valor_icms": 1.71,
+        "tipo_embalagem": "Lote"
+    },
+    "Morango": {
+        "valor": 20.0,
+        "valor_icms": 3.6,
+        "tipo_embalagem": "Lote"
+    }
+}
